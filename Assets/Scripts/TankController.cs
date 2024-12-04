@@ -33,5 +33,9 @@ public class TankController : MonoBehaviour
     { 
         aimTurret.Aim(pointerPosition);
     }
+    public void HandleBoost(bool isBoosting)
+    {
+        tankMover.SetBoost(isBoosting);
+    }
 
 }

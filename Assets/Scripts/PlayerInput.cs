@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent OnShoot = new UnityEvent();
     public UnityEvent <Vector2> OnMoveBody = new UnityEvent<Vector2>();
     public UnityEvent <Vector2> OnMoveTurret = new UnityEvent<Vector2>();
+    public UnityEvent<bool> OnBoost = new UnityEvent<bool>(); // New event for boost
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class PlayerInput : MonoBehaviour
         GetBodyMovement();
         GetTurretMovement();
         GetShootingInput();
+        GetBoostInput();
     }
     private void GetShootingInput()
     {
@@ -51,5 +53,11 @@ public class PlayerInput : MonoBehaviour
     {
         Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         OnMoveBody?.Invoke(movementVector.normalized);
+    }
+
+    private void GetBoostInput()
+    {
+        bool isBoosting = Input.GetKey(KeyCode.Space);
+        OnBoost?.Invoke(isBoosting);
     }
 }
