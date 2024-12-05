@@ -15,7 +15,7 @@ public class TargetManager : MonoBehaviour
     public Vector2 maxSpawnPosition; // Maximum spawn position
 
     public static int destroyedTargetCount = 0; // Counter for destroyed targets
-    public float powerUpSpawnChance = 0.9f; // Chance to spawn a power-up (20%)
+    public float powerUpSpawnChance = 0.5f; // Chance to spawn a power-up (20%)
 
     public static void ResetDestroyedTargetCount()
     {
@@ -74,7 +74,7 @@ public class TargetManager : MonoBehaviour
             Vector2 randomPosition = new Vector2(
             Random.Range(minSpawnPosition.x, maxSpawnPosition.x),
             Random.Range(minSpawnPosition.y, maxSpawnPosition.y));
-            
+
             Instantiate(dashPowerUpPrefab, randomPosition, Quaternion.identity);
             Debug.Log("Dash power-up spawned at: " + randomPosition);
         }

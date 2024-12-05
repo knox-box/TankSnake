@@ -15,7 +15,7 @@ public class TargetCounterUI : MonoBehaviour
     {
         // Initialize text for testing
         targetCounterText.text = "Targets Destroyed: 0";
-        dashCounterText.text = "Dash Charges: 0";
+        dashCounterText.text = "Dashes: 0";
 
     }
 
@@ -29,7 +29,7 @@ public class TargetCounterUI : MonoBehaviour
         // Update the UI text with the current dash charges
         if (tankMover != null)
         {
-            dashCounterText.text = "Dash Charges: " + tankMover.GetDashCount();
+            dashCounterText.text = "Dashes: " + tankMover.GetDashCount();
         }
     }
 }
