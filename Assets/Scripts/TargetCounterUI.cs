@@ -6,12 +6,17 @@ using TMPro;
 public class TargetCounterUI : MonoBehaviour
 {
     public TargetManager targetManager; // Reference to the TargetManager
+    public TankMover tankMover; // Reference to the TankMover
+    public TextMeshProUGUI dashCounterText; // Text for Dash Charges
+
     public TextMeshProUGUI targetCounterText; // Uncomment if using TextMeshPro
 
     private void Start()
     {
         // Initialize text for testing
         targetCounterText.text = "Targets Destroyed: 0";
+        dashCounterText.text = "Dash Charges: 0";
+
     }
 
     private void Update()
@@ -20,6 +25,11 @@ public class TargetCounterUI : MonoBehaviour
         if (targetManager != null)
         {
             targetCounterText.text = "Targets Destroyed: " + targetManager.GetDestroyedTargetCount();
+        }
+        // Update the UI text with the current dash charges
+        if (tankMover != null)
+        {
+            dashCounterText.text = "Dash Charges: " + tankMover.GetDashCount();
         }
     }
 }

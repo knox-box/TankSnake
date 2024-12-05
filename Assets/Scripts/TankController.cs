@@ -37,6 +37,13 @@ public class TankController : MonoBehaviour
     {
         tankMover.Dash();
     }
+    public void CollectDashPowerUp(int chargesGranted)
+    {
+        for (int i = 0; i < chargesGranted; i++)
+        {
+            tankMover.RechargeDash();
+        }
+    }
 
 
 }
