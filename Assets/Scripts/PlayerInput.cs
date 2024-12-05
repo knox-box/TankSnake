@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent OnShoot = new UnityEvent();
     public UnityEvent <Vector2> OnMoveBody = new UnityEvent<Vector2>();
     public UnityEvent <Vector2> OnMoveTurret = new UnityEvent<Vector2>();
-    public UnityEvent<bool> OnBoost = new UnityEvent<bool>(); // New event for boost
+    public UnityEvent OnDash = new UnityEvent();
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour
         GetBodyMovement();
         GetTurretMovement();
         GetShootingInput();
-        GetBoostInput();
+        GetDashInput(); // Detect dash input
     }
     private void GetShootingInput()
     {
@@ -55,9 +55,12 @@ public class PlayerInput : MonoBehaviour
         OnMoveBody?.Invoke(movementVector.normalized);
     }
 
-    private void GetBoostInput()
+    private void GetDashInput()
     {
-        bool isBoosting = Input.GetKey(KeyCode.Space);
-        OnBoost?.Invoke(isBoosting);
+        if (Input.GetKeyDown(KeyCode.Space)) // Press Space to dash
+        {
+            OnDash?.Invoke();
+        }
     }
+
 }
