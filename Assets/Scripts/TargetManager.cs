@@ -9,7 +9,6 @@ public class TargetManager : MonoBehaviour
     public GameObject dashPowerUpPrefab; // Reference to the dash power-up prefab
     public float spawnDelayMin = 1; // Minimum spawn delay
     public float spawnDelayMax = 3; // Maximum spawn delay
-    public float powerUpSpawnInterval = 10f; // Time interval for power-up spawns
 
     public Vector2 minSpawnPosition; // Minimum spawn position
     public Vector2 maxSpawnPosition; // Maximum spawn position
@@ -24,8 +23,6 @@ public class TargetManager : MonoBehaviour
     private void Start()
     {
         SpawnTarget(); // Initial spawn
-        StartCoroutine(SpawnPowerUpAtIntervals()); // Start power-up spawning coroutine
-
     }
 
     public void SpawnTarget()
@@ -77,17 +74,5 @@ public class TargetManager : MonoBehaviour
     {
         return destroyedTargetCount;
     }
-    private IEnumerator SpawnPowerUpAtIntervals()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(powerUpSpawnInterval); // Wait for the defined interval
-            Vector2 randomPosition = new Vector2(
-            Random.Range(minSpawnPosition.x, maxSpawnPosition.x),
-            Random.Range(minSpawnPosition.y, maxSpawnPosition.y));
 
-            Instantiate(dashPowerUpPrefab, randomPosition, Quaternion.identity);
-            Debug.Log("Dash power-up spawned at: " + randomPosition);
-        }
-    }
 }
