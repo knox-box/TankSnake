@@ -48,6 +48,17 @@ public class TargetManager : MonoBehaviour
         Destroy(target);
         destroyedTargetCount++; // Increment the counter
         Debug.Log("Targets destroyed: " + destroyedTargetCount); // Display the count
+    // Check if a power-up should spawn
+    if (Random.value <= powerUpSpawnChance)
+    {
+        Vector2 randomPosition = new Vector2(
+            Random.Range(minSpawnPosition.x, maxSpawnPosition.x),
+            Random.Range(minSpawnPosition.y, maxSpawnPosition.y)
+        );
+
+        Instantiate(dashPowerUpPrefab, randomPosition, Quaternion.identity);
+        Debug.Log("Dash power-up spawned at: " + randomPosition);
+    }
         // Start the respawn coroutine
         StartCoroutine(RespawnTarget(target));
     }
